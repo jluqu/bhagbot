@@ -102,15 +102,15 @@ class MultigramModel
         end
         if (not prev2.nil? and @trigram.has_key?(prev2) and @trigram[prev2].has_key?(prev1))
             counts = @trigram[prev2][prev1]
-            max5 = Util.getMaxFreq(5, counts)
-            return Util.randomItem(max5)
+            max10 = Util.getItemsWithMaxFreq(10, counts)
+            return Util.randomItem(max10)
         elsif (@bigram.has_key?(prev1))
             counts = @bigram[prev1]
-            max5 = Util.getMaxFreq(5, counts)
-            return Util.randomItem(max5)
+            max10 = Util.getItemsWithMaxFreq(10, counts)
+            return Util.randomItem(max10)
         else
-            max5 = Util.getMaxFreq(5, @unigram)
-            return Util.randomItem(max5)
+            max10 = Util.getItemsWithMaxFreq(10, @unigram)
+            return Util.randomItem(max10)
         end
     end
     
