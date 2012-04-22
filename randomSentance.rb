@@ -3,8 +3,8 @@ require './util'
 
 model = MultigramModel.new
 
-worpusDir = "samples"
-Dir.chdir(worpusDir)
+sampleDir = "samples"
+Dir.chdir(sampleDir)
 files = Dir.glob("*.txt")
 files.each do |file|
     model.addFile(file)
@@ -14,4 +14,3 @@ puts ""
 puts "Random sentance:"
 puts model.buildRandSentance
 puts ""
-
