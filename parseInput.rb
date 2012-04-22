@@ -1,6 +1,11 @@
 ﻿require './util'
 
 inputFile = ARGV[0]
+if inputFile.nil? or inputFile == ""
+    puts "Input file was not specified!"
+	puts " ruby parseInput.rb <file>"
+	exit
+end
 outputDir = "samples"
 
 lines = IO.readlines(inputFile)
