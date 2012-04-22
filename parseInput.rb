@@ -1,6 +1,6 @@
 ﻿require './util'
 
-inputFile = "worpus.txt"
+inputFile = ARGV[0]
 outputDir = "samples"
 
 lines = IO.readlines(inputFile)
