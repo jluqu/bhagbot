@@ -10,7 +10,7 @@ module Util
     end
 
     # Given a hash that maps objects to integers (frequency), return an array of up to the n most frequent objects
-    def Util.getMaxFreq(n, hash)
+    def Util.getItemsWithMaxFreq(n, hash)
         if (hash.class.to_s != "Hash")
             puts "Util::getMaxFreq expects a Hash, not a #{hash.class}"
             return

@@ -1,7 +1,7 @@
-﻿require './multigram'
+﻿require './trigramModel.rb'
 require './util'
 
-model = MultigramModel.new
+model = TrigramModel.new
 
 sampleDir = "samples"
 Dir.chdir(sampleDir)
@@ -14,3 +14,5 @@ puts ""
 puts "Random sentance:"
 puts model.buildRandSentance
 puts ""
+
+# model.printStats
