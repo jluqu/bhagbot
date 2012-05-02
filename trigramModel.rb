@@ -14,7 +14,7 @@ class TrigramModel
         prevWord = nil
         prevWord2 = nil
         lines.each do |line|
-            line = line.force_encoding("ASCII-8BIT")
+            line = line.force_encoding("ASCII-8BIT") if RUBY_VERSION =~ /1.9/
             line.gsub!(/\r/, "")
             
             words = line.split(/\s+/)

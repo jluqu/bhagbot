@@ -72,7 +72,7 @@ module Util
     end
     
     def Util.addPuncMarkup(line, lineStartsSentance=1)
-        line = line.force_encoding('ASCII-8BIT')
+        line = line.force_encoding('ASCII-8BIT') if RUBY_VERSION =~ /1.9/
         
         return "" if (line.strip.empty?)  # blank lines should bail before we go adding a start tag
         
@@ -132,7 +132,7 @@ module Util
     def Util.getWordType(word, count)
         if (word.length > 1 and word.upcase == word)
             return "acronym"
-        elsif (word[0] != "<" and word[0] == word[0].upcase and count > 0)
+        elsif (word[0] != "<" and word[0] == word[0].to_s.upcase and count > 0)
             return "properNoun"
         elsif (word.length > 1 and word =~ /[A-Z]/)
             return "mixedCaps"

@@ -17,7 +17,7 @@ Dir.mkdir(outputDir) if (not File.directory?(outputDir))
 lineStartsSentance = 1
 
 lines.each do |line|
-    line = line.force_encoding('ASCII-8BIT')
+    line = line.force_encoding('ASCII-8BIT') if RUBY_VERSION =~ /1.9/
     line.gsub!(/[#{194.chr}#{160.chr}]/, "")  # weird characters, get rid of them!
     line.gsub!(/#{146.chr}/, "'")
     
