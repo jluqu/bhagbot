@@ -12,7 +12,7 @@ end
 Dir.chdir("..")
 puts ""
 puts "Random sentance:"
-puts model.buildRandSentance
+puts model.buildRandSentanceFromStart
 puts ""
 
 # model.printStats

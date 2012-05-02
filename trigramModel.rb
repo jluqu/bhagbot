@@ -38,7 +38,7 @@ class TrigramModel
                 lcw = word if (wordType == "mixedCaps")
 
                 @unigram.addItem(lcw)
-		unless prevWord.nil?
+                unless prevWord.nil?
                     @fwdBigram.addItem(lcw, prevWord)
                     @bkwdBigram.addItem(prevWord, lcw)
                     unless prevWord2.nil?
@@ -46,8 +46,6 @@ class TrigramModel
                         @bkwdTrigram.addItem(prevWord2, prevWord, lcw)
                     end
                 end
-
-
                 
                 prevWord2 = prevWord
                 prevWord = lcw
@@ -83,7 +81,7 @@ class TrigramModel
         return word
     end
     
-    def buildRandSentance
+    def buildRandSentanceFromStart
         sentance = prev1 = "<start>"
         word = ""
         prev2 = nil
@@ -100,8 +98,12 @@ class TrigramModel
         end
         
         sentance = Util.interpretPuncMarkup(sentance)
-        sentance = sentance.capitalize
+        sentance[0] = sentance[0].to_s.capitalize
         return sentance
+    end
+    
+    def buildRandSentanceFromKeyword(keyword)
+        # TODO
     end
     
     def printStats
