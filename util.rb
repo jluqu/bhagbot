@@ -140,8 +140,8 @@ module Util
     end
     
     def Util.interpretWordType(word)
-        if (md = word.match(/\{(.*?)\}/))
-            type = md[1]
+        if word =~ /\{(.*?)\}/
+            type = $1
             word = word.gsub(/\{.*?\}/, "")
             word = word.upcase if (type == "acronym")
             word = word.capitalize if (type == "properNoun")
