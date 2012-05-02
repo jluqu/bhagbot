@@ -6,6 +6,8 @@ class TrigramModel
         @unigram = MarkovModel.new
         @fwdBigram = SecondOrderMarkovModel.new
         @fwdTrigram = ThirdOrderMarkovModel.new
+        @bkwdBigram = SecondOrderMarkovModel.new
+        @bkwdTrigram = ThirdOrderMarkovModel.new
     end
     
     def addFile(file)
@@ -36,8 +38,16 @@ class TrigramModel
                 lcw = word if (wordType == "mixedCaps")
 
                 @unigram.addItem(lcw)
-                @fwdBigram.addItem(lcw, prevWord) unless prevWord.nil?
-                @fwdTrigram.addItem(lcw, prevWord, prevWord2) unless prevWord.nil? or prevWord2.nil?
+		unless prevWord.nil?
+                    @fwdBigram.addItem(lcw, prevWord)
+                    @bkwdBigram.addItem(prevWord, lcw)
+                    unless prevWord2.nil?
+                        @fwdTrigram.addItem(lcw, prevWord, prevWord2)
+                        @bkwdTrigram.addItem(prevWord2, prevWord, lcw)
+                    end
+                end
+
+
                 
                 prevWord2 = prevWord
                 prevWord = lcw
@@ -96,8 +106,10 @@ class TrigramModel
     
     def printStats
         @unigram.printStats("wordlist.csv", "unigram")
-        @fwdBigram.printStats("bigramList.csv", "forward bigram")
-        @fwdTrigram.printStats("trigramList.csv", "forward trigram")
+        @fwdBigram.printStats("fwdBigramList.csv", "forward bigram")
+        @fwdTrigram.printStats("fwdTrigramList.csv", "forward trigram")
+        @bkwdBigram.printStats("bkwdBigramList.csv", "backward bigram")
+        @bkwdTrigram.printStats("bkwdTrigramList.csv", "backward trigram")
     end
 
 end
